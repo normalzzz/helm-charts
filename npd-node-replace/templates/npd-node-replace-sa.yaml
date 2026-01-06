@@ -1,0 +1,11 @@
+{{- if .Values.serviceAccount.create -}}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: npd-node-replace-sa
+  namespace: {{ .Release.Namespace }}
+  labels:
+  {{- include "npd-node-replace.labels" . | nindent 4 }}
+  annotations:
+    {{- toYaml .Values.sa.serviceAccount.annotations | nindent 4 }}
+{{- end }}
